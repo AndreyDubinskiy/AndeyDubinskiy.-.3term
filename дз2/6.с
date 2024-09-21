@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define SIZE 10
+
+void readMatrixFromFile(const char *filename, int matrix[SIZE][SIZE]) {
+    FILE *file = fopen(filename, "r");
+    if (file == NULL) {
+        perror("Ошибка открытия файла");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            fscanf(file, "%d", &matrix[i][j]);
+        }
+    }
+    
+    fclose(file);
+}
+
+void writeMatrixToFile(const char *filename, int matrix[SIZE][SIZE]) {
+    FILE *file = fopen(filename, "w");
+    if (file == NULL) {
+        perror("Ошибка открытия файла для записи");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            fprintf(file, "%d ", matrix[i][j]);
+        }
+        fprintf(file, "\n");
+    }
+
+    fclose(file);
+}
+
+void multiplyMatrices(int matrixA[SIZE][SIZE], int matrixB[SIZE][SIZE], int result[SIZE][SIZE]) {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            result[i][j] = 0; 
+            for (int k = 0; k < SIZE; k++) {
+                result[i][j] += matrixA[i][k] * matrixB[k][j];
+            }
+        }
+    }
+}
+
+int main() {
+    int matrixA[SIZE][SIZE], matrixB[SIZE][SIZE], result[SIZE][SIZE];
+
+    readMatrixFromFile("A.txt", matrixA);
+    readMatrixFromFile("B.txt", matrixB);
+
+    multiplyMatrices(matrixA, matrixB, result);
+
+    writeMatrixToFile("C.txt", result);
+
+    printf("\n");
+
+    return 0;
+}
