@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-int trib(int n) { 
+unsigned long long trib(int n) { 
     if (n == 0) {
       return 0;
     }
@@ -18,10 +18,10 @@ int trib(int n) {
 
 int main() {
     int n;
-    int result;
+    unsigned long long result;
     scanf("%i", &n);
     result = trib(n);
-    printf("%i", result);
+    printf("%llu", result);
     
     return 0;
 }
