@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+void reverse(int array[], int size) {
+    int start = 0; 
+    int end = size - 1;
+    int m;
+
+    while (start < end) {
+        m = array[start];
+        array[start] = array[end];
+        array[end] = m;
+        start++;
+        end--;
+    }
+}
+
+int main() {
+    int array[1000];
+    int size;
+    printf("Size:");
+    scanf("%i", &size);
+    printf("Array:");
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &array[i]);
+    }
+    printf("\n");
+    reverse(array, size);
+    for (int i = 0; i < size; i++) {
+        printf("%d ", array[i]);
+    }
+    printf("\n");
+
+    return 0;
+}

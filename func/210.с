@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+#define MAX 69
+
+void transpose(float A[MAX][MAX], int n) {
+    float B[MAX][MAX];
+
+ 
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            B[j][i] = A[i][j];
+        }
+    }
+    
+    FILE *resultFile = fopen("result.txt", "w");
+    if (resultFile == NULL) {
+        perror("Ошибка открытия файла result.txt");
+        return;
+    }
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            fprintf(resultFile, "%.2f ", B[i][j]);
+        }
+        fprintf(resultFile, "\n");
+    }
+
+    fclose(resultFile);
+}
+
+int main() {
+    float A[MAX][MAX];
+    int n;
+    FILE *inputFile = fopen("files/matA.txt", "r");
+    if (inputFile == NULL) {
+        perror("Ошибка открытия файла files/matA.txt");
+        return 1;
+    }
+
+    fscanf(inputFile, "%d", &n);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            fscanf(inputFile, "%f", &A[i][j]);
+        }
+    }
+
+    fclose(inputFile);
+    transpose(A, n);
+
+    return 0;
+}
