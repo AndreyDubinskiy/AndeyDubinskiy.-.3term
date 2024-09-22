@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <math.h>
+double volume_ratio(int R, int n)
+{
+    double V_ball;
+    double V_cube;
+    if (n % 2 == 0) {
+        unsigned long long result1 = 1;
+        for (int i = 1; i <= n / 2; ++i) {
+            result1 *= i;
+        }
+        V_ball = pow(M_PI, n / 2)*pow(R, n) / result1;
+    }
+    else if (n % 2 == 1) {
+        unsigned long long result2 = 1;
+        unsigned long long result3 = 1;
+        for (int i = 1; i <= (n - 1) / 2; ++i) {
+            result2 *= i;
+        }
+        for (int i = 1; i <= n; ++i) {
+            result3 *= i;
+        }
+        V_ball = 2*result2*pow(4*M_PI, (n - 1) / 2)*pow(R, n) / result3;
+    }
+    V_cube = pow(2*R, n);
+    return V_cube / V_ball;
+}
+
+int main() 
+{
+    int R = 1; 
+    int n;
+    scanf("%i", &n);
+    printf("%lf\n", volume_ratio(R, n));
+    return 0;
+}
