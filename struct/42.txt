@@ -1,0 +1,7 @@
+2.1a  Book* pb = &b;
+2.1b  float* pprice = &b.price;
+2.1c  char* pc = &b.title[1];
+2.2a  p->rating += 1;
+2.2b  p->release_date.month += 1;
+2.3a  p[-1].rating += 1;
+2.3b  p[+1].release_date.year *= 2;
