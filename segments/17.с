@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+struct book 
+{
+    char title[50];
+    int pages;
+    float price;
+};
+typedef struct book Book;
+
+void print_book(Book b)
+{
+    printf("Book: %s, Pages: %i, Price: %.1f\n", b.title, b.pages, b.price);
+}
+int main()
+{
+    Book* pb = (Book*)malloc(sizeof(Book) * 3);
+    strcpy(pb[0].title, "Don Quixote");
+    pb[0].pages = 1000;
+    pb[0].price = 750.0;
+
+    strcpy(pb[1].title, "Oblomov");
+    pb[1].pages = 400;
+    pb[1].price = 250.0;
+
+    strcpy(pb[2].title, "The Odyssey");
+    pb[2].pages = 500;
+    pb[2].price = 500.0;
+    for (size_t i = 0; i < 3; ++i) {
+        print_book(pb[i]);
+    }
+    free(pb);
+}

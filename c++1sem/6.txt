@@ -1,0 +1,18 @@
+1) Int
+2) Long Long
+3) Int
+4) Int
+5) Ошибка компиляции, так как все 3 функции подходят одинаково хорошо
+5) Ошибка комплиляции
+7) dog(int& x)
+8) dog(const int& x)
+9) dog(const int& x)
+10) dog(int& x)
+11) dog(const int& x)
+12) dog(const int& x)
+13) cow(const char* str).
+14) cow(const std::string& str)
+15) cow(const char* str)
+16) cow(const std::string& str)
+17) cow(const std::string& str)
+18) cow(const char* str)
