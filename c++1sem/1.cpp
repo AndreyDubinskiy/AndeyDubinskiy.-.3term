@@ -1,18 +1,33 @@
 #include <iostream>
+#include <list>
 
-template <typename T>
-T cube(T value) {
-    return value * value * value;
+void bebra(int n, int m) {
+    std::list<int> warriors;
+    for (int i = 1; i <= n; ++i) {
+        warriors.push_back(i);
+    }
+    auto it = warriors.begin();
+    std::cout << "Elimination order: ";
+    while (warriors.size() > 1) {
+        for (int count = 0; count < m - 1; ++count) {
+            if (++it == warriors.end()) {
+                it = warriors.begin();
+            }
+        }
+        std::cout << *it << " ";
+        it = warriors.erase(it);
+        if (it == warriors.end()) {
+            it = warriors.begin();
+        }
+    }
+    std::cout << std::endl << "The last survivor: " << warriors.front() << std::endl;
 }
 
 int main() {
-    auto a = cube(5);
-    std::cout << a << " " << sizeof(a) << std::endl;  
-    auto b = cube(5.0);
-    std::cout << b << " " << sizeof(b) << std::endl;  
-    char x = 5;
-    auto c = cube(x);
-    std::cout << static_cast<int>(c) << " " << sizeof(c) << std::endl; 
-    
+    int n, m;
+    std::cout << " ";
+    std::cin >> n >> m;
+    bebra(n, m);
+
     return 0;
 }
